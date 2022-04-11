@@ -7,9 +7,10 @@ const app = express()
 
 const connection = mysql.createConnection({
     host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'tidings'
+    user: 'stesh',
+    password: 'steshdev',
+    database: 'tidings',
+    socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
 })
 
 app.set('view engine', 'ejs')
