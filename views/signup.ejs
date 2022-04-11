@@ -1,0 +1,39 @@
+<%- include('partials/header') %>
+
+    <main class="access-point"> 
+
+        <%- include('partials/nav') %>
+
+        <form action="/signup" method="post">
+            <h2>Sign Up</h2>
+
+            <% if(error) { %>
+                <p style="color: red"><%= message %></p>
+            <% } %>
+
+            <label for="">Email</label>
+            <input type="email" name="email" id="" value="<%= user.email %>" required>
+            <label for="">Fullname</label>
+            <input type="text" name="fullname" id="" value="<%= user.fullname %>" required>
+            <label for="">Gender</label>
+            <select name="gender" id="" required>
+                <% if(error) { %>
+                    <option value="<%= user.gender %>" selected><%= user.gender %></option>
+                <% } else { %> 
+                    <option value="">--Please choose an option--</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                <% } %>
+            </select>
+            <label for="">Password</label>
+            <input type="password" name="password" id="" value="<%= user.password %>" required>
+            <label for="">Confirm Password</label>
+            <input type="password" name="confirmPassword" id="" value="<%= user.confirmPassword %>" required>
+            <input type="submit" value="Create Account">
+            <p>Already have an account? <a href="/login">Log In</a></p>
+        </form>
+
+
+    </main>
+
+<%- include('partials/footer') %>
