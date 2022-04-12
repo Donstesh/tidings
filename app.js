@@ -28,6 +28,7 @@ app.use((req, res, next) => {
         res.locals.isLoggedIn = false
     } else {
         res.locals.isLoggedIn = true
+        res.locals.userId = req.session.userId
         res.locals.username = req.session.username
     }
     next()
@@ -63,7 +64,7 @@ app.post('/new-tyd', (req, res) => {
 app.get('/tyds', (req, res) => {
     if(res.locals.isLoggedIn) {
         connection.query(
-            'SELECT * FROM tyds JOIN users ON tyds.userID = users.id',
+            'SELECT * FROM tyds JOIN users ON tyds.userID = users.id ORDER BY datePosted DESC;',
             (error, results) => {
                 res.render('tyds.ejs', {tyds: results})
             }
@@ -71,6 +72,14 @@ app.get('/tyds', (req, res) => {
     } else {
         res.redirect('/login')
     }
+})
+
+app.post('/updatelikes', (req,res)=>{
+    let userID = parseInt(req.query.userId)
+    let tydId = parseInt(req.query.tydId)
+
+    console.log(userID);
+    console.log(tydId);
 })
 
 app.get('/login', (req, res) => {
