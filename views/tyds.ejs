@@ -24,7 +24,13 @@
                     <div id="lower">
                         <p><%= tyd.datePosted.toString().split(' ').slice(0, 5).join(' ') %></p>
                         <div>
-                            <img src="/images/icons/heart.svg" alt="">
+                            <button>
+                                <form action="/updatelikes?tydId=<%=tyd.id%>&userId=<%=locals.userId%>" method="post">
+                                    <button type="submit">
+                                        <img src="/images/icons/heart.svg" alt="">
+                                    </button>
+                                </form>
+                            </button>
                             <span class="likes"><%= avatar + 15 %></span>
                         </div>
                     </div>                      
